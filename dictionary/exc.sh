@@ -3,7 +3,7 @@
 LOG_FILE="dictionary_full_run.log"
 OUTPUT_DIR="output"
 SCRIPT="dump_dictionary.py"
-LETTERS=$(echo "abcdefghijklmnopqrstuvwxyz" | sed 's/./& /g')
+LETTERS=$(echo "abc" | sed 's/./& /g')
 
 : > $LOG_FILE
 

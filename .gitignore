@@ -1,2 +1,5 @@
 .DS_Store
 dictionary/.env
+dictionary/output/
+dictionary/*.log
+dictionary/process_log.txt

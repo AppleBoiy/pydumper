@@ -9,18 +9,14 @@ LETTERS=$(echo "abc" | sed 's/./& /g')
 
 for letter in $LETTERS; do
     echo "Processing words starting with: $letter" | tee -a $LOG_FILE
-    python3 $SCRIPT \
+    nohup python3 $SCRIPT \
         --only-startwith "^$letter" \
         --output-dir $OUTPUT_DIR \
         --log-file $LOG_FILE \
         --overwrite \
         --skip-disk-check \
-        --max-words 10 \
-        --confirm >> $LOG_FILE 2>&1
-    if [[ $? -ne 0 ]]; then
-        echo "Error processing letter: $letter. Check $LOG_FILE for details." | tee -a $LOG_FILE
-        exit 1
-    fi
+        --max-words 1 \
+        --confirm >> $LOG_FILE 2>&1 &
 done
 
 echo "All letters processed successfully. Logs saved in $LOG_FILE."

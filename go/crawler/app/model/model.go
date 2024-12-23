@@ -20,12 +20,14 @@ func (m *Model) Initialize() {
 		"password=%s dbname=%s sslmode=disable",
 		config.Config.DBHOST, config.Config.DBPORT, config.Config.DBUSER, config.Config.DBPASS, config.Config.DBNAME)
 
-	db, err := sql.Open("postgresql", connect_info)
+	db, err := sql.Open("postgres", connect_info)
 	if err != nil {
 		util.ErrLog("failed to connect database:", err)
 	}
-	m.Dict.initialize(db)
-	m.Raw.initialize(db)
+	m.Dict = &dictionary{}
+	m.Raw = &rawData{}
+	m.Dict.Initialize(db)
+	m.Raw.Initialize(db)
 }
 
 var MD Model = Model{}

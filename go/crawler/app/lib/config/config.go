@@ -10,6 +10,7 @@ type config struct {
 	SearchEngineID string `ini:"search_engine_id"`
 	Thread         int    `ini:"thread"`
 	WebMax         int    `ini:"web_number"`
+	MAXSearch      int    `ini:"max_search"`
 	DBHOST         string `ini:"db_host"`
 	DBUSER         string `ini:"db_user"`
 	DBPASS         string `ini:"db_pass"`

@@ -6,9 +6,10 @@ import (
 	"github.com/AppleBoiy/pydumper/go/crawler/app/model"
 )
 
-func scrapingProcess(ch chan string) {
+func scrapingProcess(ch chan string, n int) {
 	for {
 		word := <-ch
+		log.Printf("[Worker %d] : Get '%s' to work.", n, word)
 
 		links, err := getURLFromWord(word)
 		if err != nil {
@@ -26,7 +27,7 @@ func scrapingProcess(ch chan string) {
 			pages = append(pages, model.RawData{Body: page, Link: link})
 		}
 
-		err = model.MD.Raw.Insert(pages)
+		err = model.MD.Raw.Insert(pages, word)
 		if err != nil {
 			log.Printf("[%s] %s\n", word, err)
 		}

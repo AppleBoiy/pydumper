@@ -15,7 +15,7 @@ func Start() {
 
 	// Main Procress
 	dicts := model.MD.Dict.GetAllDictionary()
-	if len(dicts) > config.Config.MAXSearch {
+	if config.Config.MAXSearch != 0 && len(dicts) > config.Config.MAXSearch {
 		dicts = dicts[:config.Config.MAXSearch]
 	}
 

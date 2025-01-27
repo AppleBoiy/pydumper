@@ -11,7 +11,8 @@ import (
 func Start() {
 	// Prepare Worker
 	ch := make(chan string, 1)
-	scraping.RunWorker(ch)
+	end := make(chan bool, 1)
+	go scraping.RunWorker(ch, end)
 
 	// Main Procress
 	dicts := model.MD.Dict.GetAllDictionary()
@@ -23,7 +24,7 @@ func Start() {
 		log.Printf("Pushing Word: %s\n", dict)
 		ch <- dict
 	}
-	log.Println("Finish Procress!!")
-	for {
-	}
+
+	log.Println("Finish Process!!")
+	<-end
 }

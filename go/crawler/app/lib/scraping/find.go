@@ -22,6 +22,9 @@ func getURLFromWord(w string) ([]string, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
+		if resp.StatusCode == 429 {
+			return []string{}, fmt.Errorf("429")
+		}
 		return []string{}, fmt.Errorf("HTTP Status Error: %d", resp.StatusCode)
 	}
 

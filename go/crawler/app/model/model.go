@@ -15,7 +15,6 @@ type Model struct {
 }
 
 func (m *Model) Initialize() {
-	// TODO connect to db & create all model
 	connect_info := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",
 		config.Config.DBHOST, config.Config.DBPORT, config.Config.DBUSER, config.Config.DBPASS, config.Config.DBNAME)

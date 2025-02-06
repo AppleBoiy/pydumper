@@ -69,7 +69,7 @@ class GraphMatchingNetwork(nn.Module):
         return similarity
 
 # Step 3: Training Loop
-def train_model(graph_list, ground_truth, epochs=50, lr=0.01, model_save_path="gmn_model.pth"):
+def train_model(graph_list, ground_truth, epochs=20, lr=0.01, model_save_path="gmn_model.pth"):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
